@@ -6,16 +6,13 @@ export async function GET(req) {
       return Response.json({ error: "Query parameter is required" }, { status: 400 });
     }
   
-    try {
       const API_KEY = process.env.SERP_API_KEY;
       const API_URL = `https://serpapi.com/search.json?q=${encodeURIComponent(query)}&api_key=${API_KEY}`;
   
       const response = await fetch(API_URL);
       const data = await response.json();
   
-      return Response.json(data, { status: 200 });
-    } catch (_error) {
-      return Response.json({ error: "Failed to fetch data" }, { status: 500 });
-    }
+      return Response.json(data, { status: 200 });Response.json({ error: "Failed to fetch data" }, { status: 500 });
+
   }
   
